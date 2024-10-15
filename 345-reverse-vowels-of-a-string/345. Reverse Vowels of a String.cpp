@@ -10,9 +10,7 @@ public:
             if (vowels.find(s[right])==vowels.end()){right--;}
             //move ahead if not vowel.
             else if (vowels.find(s[left])!=vowels.end() && vowels.find(s[right])!=vowels.end()){
-                char temp = s[left];
-                s[left] = s[right];
-                s[right] = temp;
+                swap(s[left],s[right]);
                 left++;right--;
             }
         }
