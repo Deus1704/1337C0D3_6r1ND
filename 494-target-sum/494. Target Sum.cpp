@@ -10,11 +10,8 @@ void rec(vector<int>& nums, int sum, int target, int index, int &ans){
     // multiply by '+' and explore possibilities;
     sum += nums[index];
     rec(nums, sum, target, index+1, ans);
-    // index-=1;
+    // multiply by '-' and explore possibilities. 2 becasue need to remove the currently added once.
     sum -= 2*nums[index];
-    // multiply by '-' and explore.
-    // sum -= nums[index];
-    // index+=1;
     rec(nums, sum, target, index+1, ans);
 
 }
