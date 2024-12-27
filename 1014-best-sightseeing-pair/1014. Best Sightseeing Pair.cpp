@@ -12,7 +12,7 @@
 //     }
 // };
 
-                        // Better;
+                        // Better; Using O(n)
 class Solution {
 public:
     int maxScoreSightseeingPair(vector<int>& values) {
@@ -32,16 +32,13 @@ public:
             right.insert(right.begin(),cur_max);
         }
         right.push_back(0); // similarly nothing on the right of the n-1th index.
-        for (int i=1; i<left.size()-1; i++){
+        // Now start from the original array's index 0(corresponding to 1) to n-1(n-2). since left and right both have n+1 size...
+        for (int i=1; i<left.size()-1; i++){ 
             max_score = max(max_score, left[i]+right[i]);
         }
         return max_score;
-        cout<<"First left array: ";
-        for (auto &i:left) cout<<i<<",";
-        cout<<endl;
-        cout<<"Then right array: ";
-        for (auto &i:right) cout<<i<<",";
-        cout<<endl;
-        return 1;
+        // cout<<"First left array: "; for (auto &i:left) cout<<i<<","; cout<<endl;
+        // cout<<"Then right array: "; for (auto &i:right) cout<<i<<","; cout<<endl;
+        // return 1;
     }
 };
