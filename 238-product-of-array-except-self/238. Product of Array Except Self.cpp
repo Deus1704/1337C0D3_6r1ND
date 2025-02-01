@@ -1,30 +1,35 @@
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        bool is_prod_zero = false;
-        int prod=1;
-        for (auto i:nums){
-            if (i){
-                prod*=i;
+        vector<int> answer;
+        long long product = 1;
+        bool zeroDetected = false;
+        bool nonZeroPresent = false;
+        int countZero = 0;
+        for (auto num: nums){
+            if (num){
+                product *= num;
+                nonZeroPresent = true;
             }else{
-                is_prod_zero = true;
+                zeroDetected = true;
+                countZero++;
             }
         }
-        int counts = count(nums.begin(),nums.end(), 0);
-        if (counts>=2){
-            vector<int>ans(nums.size());
-            return ans;
-        }else{
-            for(auto &i:nums){
-                if (is_prod_zero && i){
-                    i=0;
-                }else if (i){
-                    i = (prod/i);
+        for (int i=0; i<nums.size(); i++){
+            if (zeroDetected){
+                if (nums[i]){
+                    answer.push_back(0);
                 }else{
-                    i=prod;
+                    if (!nonZeroPresent || countZero >1){
+                        answer.push_back(0);
+                    }else{
+                        answer.push_back(product);
+                    }
                 }
+            }else{
+                answer.push_back(product/nums[i]);
             }
         }
-        return nums;
+        return answer;
     }
 };
