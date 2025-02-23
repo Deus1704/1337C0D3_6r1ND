@@ -9,7 +9,7 @@ public:
         for (auto &i:mp){
             final_pos.push_back({i.second.front(),i.second.back()});
         }
-        for (auto &i:final_pos) cout<<i.first<<" "<<i.second<<endl;
+        // for (auto &i:final_pos) cout<<i.first<<" "<<i.second<<endl;
         sort(final_pos.begin(), final_pos.end());
         vector<pair<int,int>>mkc;
         mkc.push_back(final_pos[0]);
