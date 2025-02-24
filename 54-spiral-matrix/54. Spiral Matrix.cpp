@@ -21,7 +21,7 @@ public:
             for (int i=c; i>=a; i--){
                 if (visited[i][d]==0) {ans.push_back(matrix[i][d]); visited[i][d]++;}
             }d++;
-            cout<<"At this point, a="<<a<<", b="<<b<<", c="<<c<<" and d="<<d<<endl;
+            // cout<<"At this point, a="<<a<<", b="<<b<<", c="<<c<<" and d="<<d<<endl;
         }
         return ans;
     }
