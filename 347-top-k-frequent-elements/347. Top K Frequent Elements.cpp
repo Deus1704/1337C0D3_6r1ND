@@ -1,21 +1,23 @@
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int,int>mp;
-        for (auto &i:nums){
-            mp[i]++;
+        unordered_map<int, int> hash_map;
+        for (auto num : nums){
+            hash_map[num]++;
         }
-        vector<pair<int, int>>ranks;
-        for (auto &i:mp){
-            ranks.push_back({i.second, i.first});
+        vector<int> output;
+        while(k--){
+            int cur_max=-1;
+            int cur_max_value =0;
+            for (auto p : hash_map){
+                if (p.second > cur_max){
+                    cur_max = p.second;
+                    cur_max_value = p.first;
+                }
+            }
+            output.push_back(cur_max_value);
+            hash_map.erase(cur_max_value);
         }
-        for (auto &i:ranks) cout<<"The i.first="<<i.first<<" and i.second="<<i.second<<endl;
-        sort(ranks.rbegin(), ranks.rend());
-        for (auto &i:ranks) cout<<"The i.first="<<i.first<<" and i.second="<<i.second<<endl;
-        vector<int> ans;
-        for (int i=0; i<k; i++){
-            ans.push_back(ranks[i].second);
-        }
-        return ans;
+        return output;
     }
 };
