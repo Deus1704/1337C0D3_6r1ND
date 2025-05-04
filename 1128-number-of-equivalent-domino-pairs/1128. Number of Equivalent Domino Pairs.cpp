@@ -19,6 +19,8 @@
 //         return count;
 //     }
 // };
+
+// The below is the O(n*log(m)) n-> the numer of dominoes, log(m) ->insertion time for the vector in mp
 class Solution {
 public:
     int numEquivDominoPairs(vector<vector<int>>& dominoes) {
