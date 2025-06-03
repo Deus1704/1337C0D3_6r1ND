@@ -2,26 +2,26 @@ class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         int n= nums.size();sort(nums.begin(),nums.end());
-        // for (auto &i:nums)cout<<i<<","; cout<<endl;
         set<vector<int>>s;
         for (int i=0; i<n-2; i++){
-            // if (i>0 && nums[i]==nums[i-1])continue;
             int l=i+1,r=n-1;
-            // cout<<"Now starting with,i="<<i<<",l="<<l<<",r="<<r<<endl;
+
             while (l<r){
                 int summ = nums[i]+nums[l]+nums[r];
-                // cout<<"summ="<<summ<<endl;
+                
                 if (summ>0){
                     r--;
                 }else if (summ<0){
                     l++;
                 }else{
                     s.insert({nums[i],nums[l],nums[r]});
-                    // break;
+                    // break; This stops the further checking of available pairs. This needs to be removed and the 
+                    // L and R should be changed since one zero is noted.
+                    // Now the reason for this change is since the nums[i]<=nums[l] and the summ is currently 0, and
+                    // increase in l should be balanced by the decrease in the value of r
                     l++;r--;
                 }
             }
-            // cout<<"Now ending with,i="<<i<<",l="<<l<<",r="<<r<<endl;
         }
         vector<vector<int>>ans(s.begin(),s.end());
         return ans;
