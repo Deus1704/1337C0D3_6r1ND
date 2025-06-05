@@ -13,12 +13,11 @@ public:
                 else if (a[val]==0) a[val]=-1*(n+1);
             }
         }
-        for (auto &i:a) cout<<i<<","; cout<<endl;
+        // for (auto &i:a) cout<<i<<","; cout<<endl;
         for (int i=1; i<=n; i++){
             if (a[i-1] >= 0 ) return i;
         }
         return n+1;
-
         // Say Better solution is the use of sorting and then move and check;
         // sort(nums.begin(),nums.end());
         // int n = nums.size();
