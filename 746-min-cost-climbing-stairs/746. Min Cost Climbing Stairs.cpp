@@ -7,7 +7,7 @@ public:
         int route1 = a[index]+rec(index+1,costupto+a[index],a,dp);
         // climb two steps 
         int route2 = a[index]+rec(index+2,costupto+a[index],a, dp);
-        cout<<"Now at index="<<index<<", we have, r1="<<route1<<", r2="<<route2<<endl;
+        // cout<<"Now at index="<<index<<", we have, r1="<<route1<<", r2="<<route2<<endl;
         return dp[index]=min(route1,route2);
     }
     int minCostClimbingStairs(vector<int>& cost) { 
