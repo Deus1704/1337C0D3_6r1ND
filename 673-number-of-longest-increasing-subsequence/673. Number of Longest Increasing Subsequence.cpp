@@ -1,24 +1,29 @@
 class Solution {
 public:
-    int findNumberOfLIS(vector<int>& a) {
-        int n=a.size(), max_len = 1;
-        vector<int>dp(n,1), count(n,1);
-        for (int i=0; i<n;i++){
-            for (int j=0; j<i; j++){
-                if (a[i]>a[j] && 1+dp[j]>dp[i]){
-                    dp[i] = 1+dp[j];
-                    count[i] = count[j];
-                }
-                else if (a[i]>a[j] && 1+dp[j]==dp[i]){
-                    count[i]+=count[j];
+    int findNumberOfLIS(vector<int>& nums) {
+        int n=nums.size(), len_max_lis=1;
+        vector<int>dp(n,1), counts(n,1);
+
+        for (int i=0; i<n; i++){
+            for (int prev=0; prev<i; prev++){
+                if (nums[prev]<nums[i] && 1+dp[prev]>dp[i]){
+                    dp[i]=dp[prev]+1;
+                    counts[i]=counts[prev];
+                }else if(nums[prev]<nums[i] && (1+dp[prev]==dp[i])){
+                    counts[i]+=counts[prev];
                 }
             }
-            max_len = max(max_len, dp[i]);
+            len_max_lis = max(len_max_lis , dp[i]);
         }
-        int final_count = 0;
+        cout<<len_max_lis<<endl;
+        int count=0;
         for (int i=0; i<n; i++){
-            if (dp[i]==max_len) final_count+=count[i];
+            if (len_max_lis==dp[i]){
+                // cout<<"Now at i="<<i<<", dp[i]="<<dp[i]<<endl;
+                count+=counts[i];
+                // cout<<"New count="<<count<<endl;
+            }
         }
-        return final_count;
+        return count;
     }
 };
