@@ -1,17 +1,21 @@
 class Solution {
-    private:
-    int minSum(int m, int n,vector<vector<int>>& grid, vector<vector<int>>& dp){
-        if (m<0 || n<0) return INT_MAX;
-        if (m==0 && n==0) return grid[0][0];
-        if (dp[m][n]) return dp[m][n];
-        int ans = 0;
-        int leftSum = minSum(m,n-1,grid, dp), upSum = minSum(m-1,n,grid, dp);
-        ans = grid[m][n]+ min(leftSum, upSum);
-        return dp[m][n]= ans;
+public:
+    int rec(int i, int j, vector<vector<int>>& grid, vector<vector<int>>&dp){
+        // base cases;
+        if (i<0 || j<0) return 1e8;
+        if (i==0 && j==0) return grid[0][0];
+        // cache check
+        if (dp[i][j]!=-1) return dp[i][j]; 
+        // try left
+        int left = grid[i][j]+rec(i,j-1, grid, dp);
+        // try up
+        int up = grid[i][j]+rec(i-1,j, grid, dp);
+
+        return dp[i][j]=min(left, up);
     }
-    public:
     int minPathSum(vector<vector<int>>& grid) {
-        vector<vector<int>> dp (201, vector<int>(201,0));
-        return minSum(grid.size()-1,grid[0].size()-1, grid, dp);
+        int n=grid.size(), m=grid[0].size();
+        vector<vector<int>>dp(n, vector<int>(m,-1));
+        return rec(n-1,m-1, grid, dp);   
     }
 };
