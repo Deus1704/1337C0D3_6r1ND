@@ -7,6 +7,7 @@ const auto __ = []() {
     std::atexit(&___::_);
     return 0;
 }();
+// Simple DFS Solution by just counting the number of connected components, count of the vertices, and the edges in each connected component. We keep a count of the extra edges in each component. Since any n nodes can be connected such that we can visit from one to other, is n-1 edges, hence the approach for the extra
 class Solution {
 public:
     void dfs(int i,vector<vector<int>>&adj,vector<int>&visited, int &vertices,vector<int>&t ){
@@ -29,12 +30,8 @@ public:
                 int vertices=0, edges=0;
                 vector<int>temp;
                 dfs(i,adj,visited, vertices, temp);
-                // cout<<"now printing temp=";
-                // for(auto j:temp)cout<<j<<","; cout<<endl;
-                // find_edges(adj,temp);
                 for (auto j:temp) edges+=adj[j].size();
                 extra+= edges/2-(vertices-1);
-                // cout<<"We had vertices="<<vertices<<", and extra="<<extra<<endl;
                 count++;
             }
         }
