@@ -1,16 +1,17 @@
 class Solution {
 public:
     int possibleStringCount(string word) {
-        int ans=0, n = word.size(), pos=0;
-        while (pos<n){
-            int start=pos;
-            while (pos>0 && word[pos]==word[pos-1]) pos++;
-            // cout<<"start="<<start<<", and pos="<<pos<<endl;
-            if (start!=pos){
-                ans+=pos-start;
+        unordered_map<char, int> mp;
+        for (int i=0; i<word.size()-1; i++){
+            // mp[c]++;
+            if (word[i]==word[i+1]){
+                mp[word[i]]++;
             }
-            pos++;
         }
-        return ans+1;
+        int possible_strings = 1;
+        for (auto it : mp){
+            if (it.second >=1){possible_strings += it.second;}
+        }
+        return possible_strings;
     }
 };
