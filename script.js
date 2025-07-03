@@ -19,6 +19,14 @@ class CodingChallenge {
 
     async loadProblems() {
         try {
+            // For GitHub Pages, we primarily use the fallback system
+            // This ensures the site works reliably in the GitHub Pages environment
+            if (this.isGitHubPages()) {
+                console.log('GitHub Pages detected, using embedded sample problems');
+                this.problems = []; // Will trigger fallback
+                return;
+            }
+            
             // Get list of all problem directories
             const problemDirs = await this.getProblemDirectories();
             
@@ -35,8 +43,16 @@ class CodingChallenge {
             
         } catch (error) {
             console.error('Failed to load problems:', error);
-            this.showError();
+            // Don't show error immediately, let fallback handle it
+            this.problems = [];
         }
+    }
+
+    isGitHubPages() {
+        // Detect if we're running on GitHub Pages
+        return window.location.hostname.includes('github.io') || 
+               window.location.hostname.includes('pages.dev') ||
+               window.location.protocol === 'file:';
     }
 
     async getProblemDirectories() {
@@ -108,7 +124,8 @@ class CodingChallenge {
             }
             return null;
         } catch (error) {
-            console.error(`Failed to load file ${path}:`, error);
+            // Silently fail for GitHub Pages compatibility
+            console.log(`Could not load file ${path}, using fallback content`);
             return null;
         }
     }
@@ -129,7 +146,8 @@ class CodingChallenge {
             
             return null;
         } catch (error) {
-            console.error(`Failed to load solution for ${problemDir}:`, error);
+            // Silently fail for GitHub Pages compatibility
+            console.log(`Could not load solution for ${problemDir}, using fallback`);
             return null;
         }
     }
@@ -175,7 +193,7 @@ class CodingChallenge {
 
     displayRandomProblems() {
         if (this.problems.length === 0) {
-            // If problems haven't loaded yet or failed, show sample problems
+            // Use sample problems when dynamic loading fails or on GitHub Pages
             this.displaySampleProblems();
             return;
         }
@@ -185,7 +203,8 @@ class CodingChallenge {
     }
 
     displaySampleProblems() {
-        // Extended sample problems for a better experience
+        // Extended sample problems for GitHub Pages deployment
+        // This ensures the site works perfectly even without dynamic loading
         const sampleProblems = [
             {
                 id: '189-rotate-array',
