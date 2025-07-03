@@ -25,9 +25,11 @@ public:
             adj[i[0]].push_back({i[1], i[2]});
             adj[i[1]].push_back({i[0], i[2]});
         }
-        int mini = 1e9; set<int>pos;
+        int mini = 1e9; set<int>pos; 
+        // set basically for keeping the track of all nodes which have the min reaching. In sorted 
         for (int i=0; i<n; i++){
             vector<int>distances(n,1e9); distances[i]=0;
+            // This is simple dijsktra but the func returns the count of distances less than the threshold. 
             int count = dijkstra(adj, distances, i, dt);
             // cout<<"for i="<<i<<", we got count="<<count<<endl;
             if (count <= mini){
@@ -37,6 +39,6 @@ public:
         // cout<<pos.size()<<endl;
         // for (auto i:pos) cout<<i<<","; cout<<endl;
         // return 0;
-        return *pos.rbegin();
+        return *pos.rbegin(); // Returns the max in the set
     }
 };
