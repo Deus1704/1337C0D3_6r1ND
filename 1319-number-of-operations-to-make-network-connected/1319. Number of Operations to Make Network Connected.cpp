@@ -1,12 +1,12 @@
-const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
-#define LC_HACK
-const auto __ = []() {
-    struct ___ {
-        static void _() { std::ofstream("display_runtime.txt") << 0 << '\n'; }
-    };
-    std::atexit(&___::_);
-    return 0;
-}();
+// const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
+// #define LC_HACK
+// const auto __ = []() {
+//     struct ___ {
+//         static void _() { std::ofstream("display_runtime.txt") << 0 << '\n'; }
+//     };
+//     std::atexit(&___::_);
+//     return 0;
+// }();
 // Simple DFS Solution by just counting the number of connected components, count of the vertices, and the edges in each connected component. We keep a count of the extra edges in each component. Since any n nodes can be connected such that we can visit from one to other, is n-1 edges, hence the approach for the extra
 // class Solution {
 // public:
