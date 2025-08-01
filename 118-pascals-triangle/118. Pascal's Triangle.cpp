@@ -1,16 +1,14 @@
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
-        vector<vector<int>> ans = {{1}};
-        int index = 2;
-        numRows-=1;
-        while (numRows--){
-            vector<int> temp(index);temp[0]=1;temp[index-1]=1;
-            for (int i=1; i<index-1; i++){
-                temp[i] = ans[index-2][i] + ans[index-2][i-1];
-            }
-            index++;
-            ans.push_back(temp);
+        vector<vector<int>>ans; ans.push_back({1});
+        for (int i=1; i<numRows; i++){
+            vector<int>prev = ans[i-1];
+            vector<int>cur; cur.push_back(1);
+            for (int j=0; j<prev.size()-1; j++){
+                cur.push_back(prev[j]+prev[j+1]);
+            }cur.push_back(1);
+            ans.push_back(cur);
         }
         return ans;
     }
