@@ -12,22 +12,22 @@
 class Solution {
 public:
     int widthOfBinaryTree(TreeNode* root) {
-       // Stick with the level order traversal
-       queue<pair<TreeNode*, int>>q;q.push({root,0});
-       long long width=0;
+       long long ans=0;
+       if (!root) return ans;
+       queue<pair<TreeNode*, long long>>q; q.push({root,0});
        while (!q.empty()){
-            int s = q.size();
-            long long mini = q.front().second, first=0, last=0;
+            int s = q.size(); long long base = q.front().second, first=0, last=0;
+            // ans = max(ans, s);
             for (int i=0; i<s; i++){
-                long long cur_pos = q.front().second-mini;
-                auto node = q.front().first; q.pop();
-                if (i==0) first = cur_pos;
-                if (i==s-1) last = cur_pos;
-                if (node->left) q.push({node->left, cur_pos*2+1});
-                if (node->right) q.push({node->right, cur_pos*2+2});
+                auto [node, pos] = q.front(); q.pop();
+                auto normalised_pos = pos-base;
+                if (i==0) first = normalised_pos;
+                if (i==s-1) last = normalised_pos;
+                if (node->left) {q.push({node->left,normalised_pos*2+1});}
+                if (node->right) {q.push({node->right,normalised_pos*2+2});}
             }
-            width = max(width, last-first+1);
+            ans = max(ans, last-first+1);
        }
-       return (int)width;
+       return (int)ans;
     }
 };
