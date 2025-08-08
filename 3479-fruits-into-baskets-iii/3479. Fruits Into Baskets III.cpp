@@ -28,7 +28,7 @@ public:
             // Go right
             right_found = query_seg(2*node+2, mid+1, end, segtree, fruit);
         }
-        // then also update since we are makign the changes in the segment tree;
+        // also update since we are makign the changes in the segment tree;
         segtree[node]  = max(segtree[2*node+1], segtree[2*node+2]);
 
         return left_found || right_found;
