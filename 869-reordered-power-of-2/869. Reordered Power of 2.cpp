@@ -8,7 +8,6 @@ public:
         }
         // for (auto &i:temp) cout<<i<<","; cout<<endl;
         string ip = to_string(n); sort(ip.begin(), ip.end());
-        if (temp.count(ip)) return true;
-        return false;
+        return temp.count(ip);
     }
 };
