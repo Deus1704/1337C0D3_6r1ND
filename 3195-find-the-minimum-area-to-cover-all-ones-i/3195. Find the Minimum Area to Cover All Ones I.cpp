@@ -38,11 +38,11 @@ public:
                 }
             }
         }
-        cout<<"LTx="<<left_most_topx<<", LTy="<<left_most_topy<<"\n";
-        cout<<"LBx="<<left_most_bottomx<<", LBy="<<left_most_bottomy<<"\n";
-        cout<<"RTx="<<right_most_topx<<", RTy="<<right_most_topy<<"\n";
-        cout<<"RBx="<<right_most_bottomx<<", RBy="<<right_most_bottomy<<"\n";
-        cout<<"Midleft="<<mid_lefty<<", mid_righty="<<mid_righty<<"\n";
+        // cout<<"LTx="<<left_most_topx<<", LTy="<<left_most_topy<<"\n";
+        // cout<<"LBx="<<left_most_bottomx<<", LBy="<<left_most_bottomy<<"\n";
+        // cout<<"RTx="<<right_most_topx<<", RTy="<<right_most_topy<<"\n";
+        // cout<<"RBx="<<right_most_bottomx<<", RBy="<<right_most_bottomy<<"\n";
+        // cout<<"Midleft="<<mid_lefty<<", mid_righty="<<mid_righty<<"\n";
         int width = max({right_most_topy, right_most_bottomy, mid_righty}) - min({left_most_topy, left_most_bottomy, mid_lefty}) +1;
         int height = max(right_most_bottomx, left_most_bottomx) - min(right_most_topx, left_most_topx) +1;
         cout<<"Got width="<<width<<", and ht="<<height<<endl;
