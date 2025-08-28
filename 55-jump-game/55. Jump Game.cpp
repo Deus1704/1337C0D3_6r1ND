@@ -1,15 +1,13 @@
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        int index_max_reached=0;
-        // if (nums[0]==0 && nums.size()>1) return false;
-        for (int i=0; i<nums.size()-1; i++){
-            // cout<<"Now the max possible reach="<<index_max_reached<<" and cur_index="<<cur_index<<endl;
-            if (nums[i]==0 && index_max_reached<=i ) break;
-            index_max_reached = max(index_max_reached, i+nums[i]);
+        bool can = true; int max_reach = 0, n=nums.size();
+        for (int i=0; i<n; i++){
+            if (i!=0 && i > max_reach){
+                can = false; break;
+            }
+            max_reach = max(max_reach, i+nums[i]);
         }
-        // cout<<"Now the max possible reach="<<index_max_reached<<" and cur_index="<<cur_index<<endl;
-        if (index_max_reached >= nums.size()-1) return true;
-        else return false;
+        return can;
     }
 };
