@@ -1,41 +1,33 @@
-void merge(vector<int>& nums, int low, int mid, int high){
-    int left = low;
-    int right = mid+1;
-    vector<int> temp;
-    while (left<=mid && right<=high){
-        if (nums[left]<=nums[right]){
-            temp.push_back(nums[left]);
-            left++;
-        }else{
-            temp.push_back(nums[right]);
-            right++;
-        }
-    }
-    while (left<=mid){
-        temp.push_back(nums[left]);
-        left++;
-    }
-    while (right<=high){
-        temp.push_back(nums[right]);
-        right++;
-    }
-    for (int i = low; i<=high; i++){
-        nums[i] = temp[i-low];
-    }
-}
-
-void mergesort(vector<int>& nums, int low, int high){
-    if (low>=high) return;
-    int mid = (low+high)/2;
-    mergesort(nums,low,mid);
-    mergesort(nums,mid+1, high);
-    merge(nums, low, mid, high);
-}
-
 class Solution {
 public:
+    vector<int>merge(vector<int>&left, vector<int>&right){
+        int l=0,r=0,n=left.size(), m=right.size();
+        vector<int>fin;
+        while (l<n && r<m){
+            if (left[l] <= right[r]){
+                fin.push_back(left[l]); l++;
+            }else if (left[l] > right[r]){
+                fin.push_back(right[r]); r++;
+            }
+        }
+        while(l<n){ 
+            fin.push_back(left[l]); l++;
+        }
+        while(r<m){ 
+            fin.push_back(right[r]); r++;
+        }
+        return fin;
+    }
+    vector<int> merge_sort(vector<int>&a){
+        if (a.size() == 1) return a;
+        int mid = a.size()/2;
+        vector<int>left(a.begin(), a.begin()+mid);
+        vector<int>right(a.begin()+mid, a.end());
+        vector<int> left_sorted = merge_sort(left), right_sorted = merge_sort(right) ;
+        return merge( left_sorted, right_sorted) ;
+    }
     vector<int> sortArray(vector<int>& nums) {
-        mergesort(nums,0,nums.size()-1);
-        return nums;
+        return merge_sort(nums);
+        // return vector<int>c(nums.begin(), nums.begin()+nums.size()/2);
     }
 };
