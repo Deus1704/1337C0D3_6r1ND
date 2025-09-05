@@ -1,0 +1,10 @@
+# Write your MySQL query statement below
+select email as Email
+from Person
+group by (email)
+having Count(email)>1;
+-- where p.email in (
+--     select Count(q.email) as occurence_count 
+--     from Person q;
+--     where occurence_count > 1
+-- )
