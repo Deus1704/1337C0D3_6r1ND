@@ -1,10 +1,15 @@
 # Write your MySQL query statement below
 -- select Customers.name as Customers
-select name as Customers
-from (
-    select Customers.id, Customers.name, Orders.customerId
-    from Customers
-    left Join Orders
-    on Orders.customerId=Customers.id
-) as subq
-where subq.customerId is NULL;
+-- select name as Customers
+-- from (
+--     select Customers.id, Customers.name, Orders.customerId
+--     from Customers
+--     left Join Orders
+--     on Orders.customerId=Customers.id
+-- ) as subq
+-- where subq.customerId is NULL;
+select Customers.name as Customers
+from Customers
+Left join Orders
+on Orders.customerId = Customers.id
+where Orders.customerId is NULL;
